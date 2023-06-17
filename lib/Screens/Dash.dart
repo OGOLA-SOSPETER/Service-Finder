@@ -1,104 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:servicefinder/Screens/serviceproviderdescription.dart';
-import 'package:servicefinder/datasets/service_providers.dart';
+import 'package:servicefinder/displays/maincard.dart';
 
-class DashScreen extends StatelessWidget {
+class DashScreen extends StatefulWidget {
   const DashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DashScreen> createState() => _DashScreenState();
+}
+
+class _DashScreenState extends State<DashScreen> {
+  TextEditingController _searchcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "Top Rating Service Provider(s) of the Week.",
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
-          textAlign: TextAlign.start,
-        ),
-        Flexible(
-          flex: 3,
-          fit: FlexFit.tight,
-          child: GridView.count(
-            crossAxisCount: 3,
-            semanticChildCount: providers.length,
-            // Adjust the aspect ratio
-            padding: const EdgeInsets.all(7.0),
-            mainAxisSpacing: 6.0,
-            crossAxisSpacing: 5.0,
-            children: providers.map((provider) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return DescriptionPage(
-                          title: provider.title,
-                          image: provider.image,
-                          name: provider.name,
-                          location: provider.location,
-                          authenticity: provider.description,
-                        );
-                      },
+        Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 5),
+              SizedBox(
+                width: 300,
+                height: 35,
+                child: TextFormField(
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    hintText: 'Search for a Service Provider',
+                    hintStyle: TextStyle(fontStyle: FontStyle.normal),
+                    suffixIcon: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.search,
+                          size: 30,
+                        )),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                  );
-                },
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        spreadRadius: 2,
-                        blurRadius: 2,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset(
-                        'images/man.png',
-                        width: 40,
-                        height: 40,
-                      ),
-                      ListTile(
-                        title: Text(
-                          provider.name,
-                          style: TextStyle(fontSize: 13.5),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'ID: ${provider.id}',
-                              style: TextStyle(fontSize: 9),
-                            ),
-                            Text(
-                              'Title: ${provider.title}',
-                              style: TextStyle(fontSize: 9),
-                            ),
-                            Text(
-                              'Location: ${provider.location}',
-                              style: TextStyle(fontSize: 9),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  autofocus: false,
+                  controller: _searchcontroller,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  textInputAction: TextInputAction.search,
+                  textCapitalization: TextCapitalization.words,
+                  enableSuggestions: true,
+                  enabled: true,
+                  enableInteractiveSelection: true,
                 ),
-              );
-            }).toList(),
+              )
+            ],
           ),
         ),
+        Text(
+          "Weekly Ratings",
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+          textAlign: TextAlign.start,
+        ),
+        CardDisplay(),
         SizedBox(height: 5.0),
       ],
     );
