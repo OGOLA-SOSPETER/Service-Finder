@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:servicefinder/displays/cards/new_booking.dart';
 import 'package:servicefinder/models/Notifications.dart';
 import 'package:servicefinder/Screens/Dash.dart';
 import 'package:servicefinder/drawers/mainpage_drawer.dart';
+import 'package:servicefinder/models/Settings.dart';
 import 'package:servicefinder/models/bookings.dart';
 import 'package:servicefinder/models/history.dart';
 
@@ -30,12 +32,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("Main Dashboard"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         elevation: 2.0,
         clipBehavior: Clip.hardEdge,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.payment)),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return const SettingsPage();
+                }));
+              },
+              icon: const Icon(Icons.payment)),
           IconButton(
               onPressed: () {
                 Navigator.of(context)
@@ -51,7 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: Drawer(backgroundColor: Colors.white, child: const MainDrawer()),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (BuildContext context) {
+            return const NewBooking();
+          }));
+        },
         elevation: 3.0,
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        alignment: Alignment.centerLeft,
         child: DashScreen(),
       ),
     );

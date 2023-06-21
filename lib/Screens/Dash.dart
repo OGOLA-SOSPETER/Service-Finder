@@ -14,50 +14,52 @@ class _DashScreenState extends State<DashScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Form(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: 5),
-              SizedBox(
-                width: 300,
-                height: 35,
-                child: TextFormField(
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    hintText: 'Search for a Service Provider',
-                    hintStyle: TextStyle(fontStyle: FontStyle.normal),
-                    suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.search,
-                          size: 30,
-                        )),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+              Center(
+                child: SizedBox(
+                  width: 300,
+                  height: 35,
+                  child: TextFormField(
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: 'Search for a Service Provider',
+                      hintStyle: TextStyle(fontStyle: FontStyle.normal),
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.search,
+                            size: 30,
+                          )),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
+                    autofocus: false,
+                    controller: _searchcontroller,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    textInputAction: TextInputAction.search,
+                    textCapitalization: TextCapitalization.words,
+                    enableSuggestions: true,
+                    enabled: true,
+                    enableInteractiveSelection: true,
                   ),
-                  autofocus: false,
-                  controller: _searchcontroller,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  textInputAction: TextInputAction.search,
-                  textCapitalization: TextCapitalization.words,
-                  enableSuggestions: true,
-                  enabled: true,
-                  enableInteractiveSelection: true,
                 ),
               )
             ],
           ),
         ),
+        SizedBox(height: 5),
         Text(
-          "Weekly Ratings",
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-          textAlign: TextAlign.start,
+          "Top Rated",
+          style: TextStyle(fontSize: 25),
         ),
         CardDisplay(),
         SizedBox(height: 5.0),

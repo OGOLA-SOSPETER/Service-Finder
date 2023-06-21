@@ -55,11 +55,7 @@ class CardDisplay extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    'images/man.png',
-                    width: 40,
-                    height: 40,
-                  ),
+                  SizedBox(height: 80, width: 80, child: provider.image),
                   ListTile(
                     title: Text(
                       provider.name,

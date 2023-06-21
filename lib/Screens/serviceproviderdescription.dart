@@ -23,42 +23,34 @@ class DescriptionPage extends StatelessWidget {
         centerTitle: true,
         title: Text(name + '  Profile Info'),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [image],
-                  ),
-                ),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                Text(
-                  authenticity,
-                  textAlign: TextAlign.justify,
-                  style: const TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ],
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 200,
+              height: 200,
+              child: image,
             ),
-          ),
-        ],
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              authenticity,
+              textAlign: TextAlign.justify,
+              style: const TextStyle(
+                fontSize: 17,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

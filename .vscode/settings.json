@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "G:/My Drive/Flutter_Apps/servicefinder/windows/flutter"
+    "cmake.sourceDirectory": "G:/My Drive/Flutter_Apps/servicefinder/windows/flutter",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

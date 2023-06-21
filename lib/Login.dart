@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
-  bool passwordVisible = false;
+  bool passwordVisible = true;
 
   String? _emailError;
 
